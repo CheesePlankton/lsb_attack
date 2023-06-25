@@ -121,7 +121,7 @@ with open(model_file, 'rb') as f:
 
 
 # Load the image you want to test
-image_path = r'C:\Users\z2745\Desktop\lsb\car.png'
+image_path = './car.png'
 features = extract_features(image_path)
 features = features.reshape(1, -1)
 
@@ -198,10 +198,10 @@ def decrypt_image(encrypted_image_path):
     return decrypted_image
 
 # Usage example
-encrypted_image_path = r'C:\Users\z2745\Desktop\lsb\car.png'
+encrypted_image_path = './car.png'
 
 decrypted_image = decrypt_image(encrypted_image_path)
-decrypted_image.save(r'C:\Users\z2745\Desktop\lsb\secret_image.png')
+decrypted_image.save('./secret_image.png')
 
 print("Encrypted image successfully decrypted and saved as 'decrypted_image.png'")
 
@@ -224,13 +224,13 @@ def modify_LSBs(image_path, num_bits):
             b = (b & ~(2 ** num_bits - 1))
             pixels[i, j] = (r, g, b)
     # Save the modified image
-    modified_image_path = r'C:\Users\z2745\Desktop\lsb\modified_image.'+image_path.split('.')[1]
+    modified_image_path = './modified_image.'+image_path.split('.')[1]
     image.save(modified_image_path)
     return modified_image_path
 
 # Modify the LSBs if the image contains a secret message
 if prediction == 1:
-    modified_image_path = modify_LSBs(r'C:\Users\z2745\Desktop\lsb\car.png', num_bits=2)
+    modified_image_path = modify_LSBs('./car.png', num_bits=2)
     print("Modified image with disrupted secret message saved as: {}".format(modified_image_path))
 
 
